@@ -1,0 +1,37 @@
+[package]
+name = "erc20-example"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/OpenZeppelin/rust-contracts-stylus"
+publish = false
+version = "0.2.0-alpha.4"
+
+[dependencies]
+openzeppelin-stylus = { git = "https://github.com/OpenZeppelin/rust-contracts-stylus", branch = "main" }
+alloy-primitives = { version = "0.8.20", default-features = false }
+stylus-sdk = { version = "0.8.4", default-features = false, features = ["mini-alloc", "export-abi"] }
+
+[dev-dependencies]
+alloy = { version = "0.7.3", features = [
+  "contract",
+  "network",
+  "providers",
+  "provider-http",
+  "rpc-client",
+  "rpc-types-eth",
+  "signer-local",
+  "getrandom",
+] }
+eyre = "0.6.8"
+tokio = { version = "1.12.0", features = ["full"] }
+
+[features]
+export-abi = ["stylus-sdk/export-abi"]
+e2e = []
+
+[lib]
+crate-type = ["lib", "cdylib"]
+
+[[bin]]
+name = "erc20-example"
+path = "src/main.rs"
